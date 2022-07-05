@@ -5,27 +5,27 @@ export const Container = styled.div`
     width: 100%;
     max-width: 991px;
     margin: 0 auto;
-`
+`;
 
 export const Title = styled.h1`
     text-align: center;
     font-size: 2rem;
     font-family: sans-serif;
     color: #333;
-`
+`;
 
 export const List = styled.ul`
     list-style: none;
     padding: 0;
     font-family: sans-serif;
-`
+`;
 
 export const ListItem = styled.ul`
     margin: .5rem 0;
     background: #000;
     color: #eee;
     padding: .5rem;
-`
+`;
 
 export const LinkHome = styled(Link)`
     display: block;
@@ -36,4 +36,4 @@ export const LinkHome = styled(Link)`
     padding: .5rem 0;
     color: #eee;
     text-decoration: none;
-`
+`;

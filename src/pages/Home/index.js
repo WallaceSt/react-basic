@@ -1,28 +1,30 @@
 import { useState } from 'react';
-import axios from 'axios';
-import * as S from "./styled"
 import {useNavigate} from 'react-router-dom';
+import axios from 'axios';
+
+import * as S from "./styled"
 
 function Home(props) {
   const [usuario, setUsuario] = useState('WallaceSt');
   const [erro, setErro] = useState(false);
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // use navigate hook to handle navigation
+
   function handlePesquisa() {
     axios
-      .get(`https://api.github.com/users/${usuario}/repos`)
+      .get(`https://api.github.com/users/${usuario}/repos`) // get data from github repositories
       .then(response => {
         const repositories = response.data;
         const repositoriesNames = [];
-        repositories.map(repo => {
+        repositories.map(repo => { // pushes only the repositories names
           repositoriesNames.push(repo.name);
         });
-        localStorage.setItem('repositoriesNames', JSON.stringify(repositoriesNames));
+        localStorage.setItem('repositoriesNames', JSON.stringify(repositoriesNames)); // save repositories names to local storage
         setErro(false);
-        navigate('/repositories');
+        navigate('/repositories');  // redirect to repositories page
       })
       .catch(err => {
-        setErro(true);
-      })
+        setErro(true);  // set error to show error message if something went wrong
+      });
   }
 
   return (
