@@ -1,13 +1,19 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import * as S from "./styled";
 
 export default function Repositories() {
     const [repositories, setRepositories] = useState([]);
-    useEffect(() => { 
+    const navigate = useNavigate();
+    useEffect(() => {
         let repositoriesNames = localStorage.getItem("repositoriesNames");
-        repositoriesNames = JSON.parse(repositoriesNames);
-        setRepositories(repositoriesNames);
-        localStorage.clear();
+        if (repositoriesNames) {
+            repositoriesNames = JSON.parse(repositoriesNames);
+            setRepositories(repositoriesNames);
+            localStorage.clear();
+        } else {
+            navigate('/');
+        }
     }, [])
 
     return (
