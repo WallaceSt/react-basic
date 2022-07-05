@@ -1,8 +1,15 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-    width: 100%;
+export const HomeContainer = styled.div`
     height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+`
+
+export const Content = styled.div`
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -13,6 +20,7 @@ export const Title = styled.h1`
     font-size: 2rem;
     font-family: sans-serif;
     color: #333;
+    margin-bottom: 4rem;
 `
 
 export const Input = styled.input`
@@ -38,4 +46,12 @@ export const Button = styled.button`
         outline: none;
         box-shadow: none;
     }
+`
+
+export const ErrorMsg = styled.span`
+    display: block;
+    font-size: .65rem;
+    color: red;
+    font-weight: 600;
+    margin-top: 1rem;
 `

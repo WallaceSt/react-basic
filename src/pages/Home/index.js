@@ -4,7 +4,8 @@ import * as S from "./styled"
 import {useNavigate} from 'react-router-dom';
 
 function Home(props) {
-  const [usuario, setUsuario] = useState('WallaceSt')
+  const [usuario, setUsuario] = useState('WallaceSt');
+  const [erro, setErro] = useState(false);
   const navigate = useNavigate();
   function handlePesquisa() {
     axios
@@ -16,25 +17,29 @@ function Home(props) {
           repositoriesNames.push(repo.name);
         });
         localStorage.setItem('repositoriesNames', JSON.stringify(repositoriesNames));
+        setErro(false);
         navigate('/repositories');
       })
-      .catch(err => { 
-        console.log(err);
+      .catch(err => {
+        setErro(true);
       })
   }
 
   return (
-    <>
+    <S.HomeContainer>
       <S.Title>
         {props.title}! <br/> Meu nome é {usuario}.
       </S.Title>
-      <S.Container>
+      <S.Content>
         <S.Input placeholder="Usuário" name="usuario" onChange={e => {
           setUsuario(e.target.value);
         }} value={usuario} />
         <S.Button type='button' onClick={ handlePesquisa }>Pesquisar</S.Button>
-      </S.Container>
-    </>
+      </S.Content>
+      {
+        erro ? <S.ErrorMsg>Ocorreu um erro. Tente mais tarde.</S.ErrorMsg> : ""
+      }
+    </S.HomeContainer>
   );
 }
 export default Home;
